@@ -21,7 +21,7 @@ export default function User() {
     };
 
     fetchData();
-  }, []);
+  }, [API_URL]);
 
   const handleDelete = async (userId) => {
     try {
@@ -56,10 +56,10 @@ export default function User() {
               <td>{user.email}</td>
               <td className="actionButton">
                 <button onClick={() => handleDelete(user._id)}>
-                  <i className="fa-solid fa-trash"></i> 
+                  <i className="fa-solid fa-trash"></i>
                 </button>
                 <Link to={`/edit/${user._id}`}>
-                  <i className="fa-solid fa-pen-to-square"></i> 
+                  <i className="fa-solid fa-pen-to-square"></i>
                 </Link>
               </td>
             </tr>

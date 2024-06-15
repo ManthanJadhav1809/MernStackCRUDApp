@@ -30,7 +30,7 @@ export default function Edit() {
         console.log(response.data);
       })
       .catch((error) => console.log(error));
-  }, [id]);
+  }, [id,API_URL]);
 
   const formSubmitHandler = async(e) => {
     e.preventDefault(); // Prevent default form submission
