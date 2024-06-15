@@ -5,6 +5,8 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 export default function Add() {
   
+  const API_URL = process.env.REACT_APP_API_URL;
+
    const [hide,setHide]=useState(false);
    const userInital={
     fname:"",
@@ -23,7 +25,7 @@ export default function Add() {
    const submitForm= async(e)=>{
     setHide(true)
     e.preventDefault();
-    await axios.post("http://localhost:8000/api/create",user)
+    await axios.post(`${API_URL}/api/create`,user)
     .then((response)=>{
       toast.success(response.data.msg,{position:"top-right"})
       setHide(false);

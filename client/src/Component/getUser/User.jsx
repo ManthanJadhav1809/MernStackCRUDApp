@@ -5,12 +5,14 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 export default function User() {
+  const API_URL = process.env.REACT_APP_API_URL;
+ 
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const responseData = await axios.get("http://localhost:8000/api/getall");
+        const responseData = await axios.get(`${API_URL}/api/getall`);
         setUsers(responseData.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
@@ -23,7 +25,7 @@ export default function User() {
 
   const handleDelete = async (userId) => {
     try {
-      const response = await axios.delete(`http://localhost:8000/api/delete/${userId}`);
+      const response = await axios.delete(`${API_URL}/api/delete/${userId}`);
       setUsers((prevUsers) => prevUsers.filter((user) => user._id !== userId));
       toast.success(response.data.msg || "User deleted successfully");
     } catch (error) {

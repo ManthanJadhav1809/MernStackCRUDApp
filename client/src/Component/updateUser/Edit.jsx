@@ -7,7 +7,8 @@ import { toast } from "react-hot-toast";
 export default function Edit() {
   const { id } = useParams();
   const navigate = useNavigate(); // To navigate after successful update
-
+  const API_URL = process.env.REACT_APP_API_URL;
+  
   const [user, setUser] = useState({
     fname: "",
     lname: "",
@@ -23,7 +24,7 @@ export default function Edit() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/api/getone/${id}`)
+      .get(`${API_URL}/api/getone/${id}`)
       .then((response) => {
         setUser(response.data);
         console.log(response.data);
@@ -34,7 +35,7 @@ export default function Edit() {
   const formSubmitHandler = async(e) => {
     e.preventDefault(); // Prevent default form submission
     await axios
-      .put(`http://localhost:8000/api/update/${id}`, user)
+      .put(`${API_URL}/api/update/${id}`, user)
       .then((response) => {
         toast.success(response.data.msg, {position:"top-right"})
         navigate("/"); // Navigate back to the home page after successful update
